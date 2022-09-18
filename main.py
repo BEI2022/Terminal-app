@@ -1,46 +1,64 @@
 # import vehicles 
-import time, random
+import time, random, p1
 
 # chen = vehicles.Vehicle('668-yyl', "member")
 
-# 显示欢迎语并输入车牌号码
+store = None
+member = None
+sec_member = None
+
+
+# 显示欢迎语
 print("Welcome to the Parking System! ")
-num = 20#random.randint(1,20)
+num = 19 #random.randint(1,20)
 print(f"Parking spaces currently available {20 - num}")
-rego = input("Please enter your rego number: ")
+
+# 如果没有位置
+if num == 20:
+    print("No available parking spaces. If you are a member please go to zone C if not please find another place. ")
+    answer = input("Do you wish to continue? (yes/no): ")
+    if answer == "yes":
+        p1.member_services()
+    elif answer == "no":
+        exit()
+    else:
+        print("Invalid values please try again.")
+else:
+    # 选择是否是会员
+    while True:
+        member = input("Are you a member? (yes/no): ")
+        if member == "yes":
+            p1.member_services()
+            break
+        elif member == "no":
+            sec_member = input("As a member you can enjoy free car wash and free food, do you want to join the membership?: ")
+            if sec_member == "yes":
+                print("Welcome! New members! ")
+                p1.member_services()
+                break
+            elif sec_member == "no":
+                break
+            else:
+                print("Invalid values please try again.")
+                continue
+        else:
+            print("Invalid values please try again.")
+
 
 # 选择要去的商店
-store = input("Please choose the store you will visit (1/2): 1. Coles 2. Woolworths: ")
-
-if num == 20:
-    print("No available parking spaces.")
-elif store == 1 and num != 20:
-    print(f"Please park your car at zone A number {num + 1}")
-elif store == 2 and num != 20:
-    print(f"Please park your car at zone B number {num +1}")
-else:
-    print("Invalid values")
-
-# 选择是否是会员
+# 输入车牌号
+rego = input("Please enter your rego number: ")
 while True:
-    global member
-    member = input("Are you a member? (yes/no): ")
-    if member == "yes":
+    store = int(input("Please choose the store you will visit (1/2): 1. Coles 2. Woolworths: "))
+    if store == 1:
+        print(f"Please park your car at zone A number {num + 1}")
         break
-    elif member == "no":
-        global sec_member
-        sec_member = input("As a member you can enjoy free car wash and free food, do you want to join the membership?: ")
-        if sec_member == "yes":
-            print("Welcome! New members! ")
-            break
-        elif sec_member == "no":
-            break
-        else:
-            print("Invalid values")
-            continue
+    elif store == 2:
+        print(f"Please park your car at zone B number {num +1}")
+        break
     else:
-        print("Invalid values")
-        
+        print("Invalid values please try again.")
+
 # 记录到访时间
 time_in = time.asctime(time.localtime(time.time()))
 print(f"Your check in time is {time_in}")
