@@ -6,6 +6,7 @@ import time, random, p1
 store = None
 member = None
 sec_member = None
+date = None
 
 
 # 显示欢迎语
@@ -31,7 +32,7 @@ else:
             p1.member_services()
             break
         elif member == "no":
-            sec_member = input("As a member you can enjoy free car wash and free food, do you want to join the membership?: ")
+            sec_member = input("As a member you can enjoy free car wash and free food, there are also discounts on parking fees, do you want to join the membership?: ")
             if sec_member == "yes":
                 print("Welcome! New members! ")
                 p1.member_services()
@@ -63,4 +64,16 @@ while True:
 time_in = time.asctime(time.localtime(time.time()))
 print(f"Your check in time is {time_in}")
 
+# check out part
+print('--------------------------------------------------------------------------------')
+print("Now you're finish shopping and ready to go home -_-")
 
+
+if date == 1:
+    date = int(input("What is today's date?(number only): "))
+    print("Today is the monthly membership day with free parking, have a nice day!")
+    exit()
+elif date != 1:
+    
+else:
+    print("Invalid values please try again.")
