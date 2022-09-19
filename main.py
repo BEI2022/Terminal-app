@@ -27,12 +27,12 @@ if num == 20:
 else:
     # 选择是否是会员
     while True:
-        member = input("Are you a member? (yes/no): ")
+        member = p1.member_select()
         if member == "yes":
             p1.member_services()
             break
         elif member == "no":
-            sec_member = input("As a member you can enjoy free car wash and free food, there are also discounts on parking fees, do you want to join the membership?: ")
+            sec_member = p1.sec_member_select()
             if sec_member == "yes":
                 print("Welcome! New members! ")
                 p1.member_services()
@@ -73,7 +73,8 @@ if date == 1:
     date = int(input("What is today's date?(number only): "))
     print("Today is the monthly membership day with free parking, have a nice day!")
     exit()
-elif date != 1:
+# elif date != 1 and menber == no and sec_member == no:
     
-else:
-    print("Invalid values please try again.")
+    
+# else:
+#     print("Invalid values please try again.")
