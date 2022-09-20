@@ -2,7 +2,16 @@
 #     def __init__(self, plate, Identity):
 #         self.plate = plate
 #         self.Identity = Identity
-import datetime, random
+import  random, time
+
+from datetime import datetime
+
+
+store = None
+member = None
+sec_member = None
+date = None
+account_money = random.randint(0,30)
 
 def member_select():
     member = input("Are you a member? (yes/no): ")
@@ -27,13 +36,34 @@ def member_services():
         else:
             print("Invalid values please try again.")
 
-def time_in():
-    time_in = datetime.datetime.now()
+def start_time():
+    time_in = datetime.now()
+    # time_in = time.time()
+    print("%0.2d:%0.2d:%0.2d" % (time_in.hour, time_in.minute, time_in.second))
     return time_in
 
-def time_out():
-    time_out = datetime.datetime.now()
+def finish_time():
+    # time.sleep(3)
+    time_out = datetime.now()
+    # time_out = time.time()
+    print("%0.2d:%0.2d:%0.2d" % (time_out.hour, time_out.minute, time_out.second))
     return time_out
+
+print("this is happenings")
+
+
+def total_times(entry_time, exit_time):
+    entry_time = start_time() 
+    exit_time = finish_time() 
+    total_time =  exit_time - entry_time
+    return total_time
+
+
+# def total_times():
+#     total_time =  exit_time - entry_time
+#     return total_time
+
+    
 
 
 def member_check_out_menu():
@@ -45,18 +75,15 @@ def member_check_out_menu():
     return input("Please enter your select: ")
 
 def member_check():
-    global account_money
-    account_money = random.randint(0,30)
     print(f"Hello {rego}, your balance is ${account_money}.")
+    return account_money
 
 def member_top_up(top_up_money):
-    global account_money
     account_money += top_up_money
     print(f"Hello {rego},You successfully deposited ${top_up_money}")
     member_check()
 
 def member_pay_bill():
-    global account_money
-    account_money -= {total_time * 2}
+    account_money -= {total_times(entry_time, exit_time) * 2}
     return account_money
     

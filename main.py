@@ -1,12 +1,9 @@
 # import vehicles 
-import random, p1,time
+import  p1
 
 # chen = vehicles.Vehicle('668-yyl', "member")
 
-store = None
-member = None
-sec_member = None
-date = None
+
 
 
 
@@ -64,8 +61,7 @@ while True:
         print("Invalid values please try again.")
 
 # 记录到访时间
-p1.time_in()
-print(f"Your check in time is {p1.time_in}")
+print(f"Your check in time is {p1.start_time()}")
 
 # check out part
 print('--------------------------------------------------------------------------------')
@@ -74,12 +70,12 @@ print("Now you're finish shopping and ready to go home -_-")
 while True:
     temp_out = input("Ready to go home? (yes/no): ")
     if temp_out == "yes":
-        print(f"Your total parking time is: {time_in}")
-        print(f"Your total parking time is: {total_time}, you need to pay ${total_time * 3}.")
+        print(f"Your total parking time is: {p1.finish_time()}")
+        print(f"Your total parking time is: {p1.total_times()}, you need to pay ${p1.total_times() * 3}.")
         break
     elif temp_out == "no":
         print("Have fun!")
-        time.sleep(3)
+        # time.sleep(3)
         continue
     else:
         print("Invalid values please try again.")
@@ -94,7 +90,7 @@ while True:
         print(f"Your vehicles is at zone B NO. {num + 1}")
         break
     else:
-        print("Invalid values please try again.")
+        print("Can't find your car please try again.")
 
 
 # 输入时间以确定是否为免费日
@@ -109,10 +105,10 @@ elif date != 1 and member == "no" and sec_member == "no":
         if temp_check_out == "y":
             while True:
                 temp_top_up_money = int(input("Please enter the amount of money you want to top up: "))
-                if temp_top_up_money >= {total_time * 3}:
+                if temp_top_up_money >= {p1.total_times(entry_time, exit_time) * 3}:
                     print("Thanks for shopping today, have a nice day!")
                     exit()
-                elif temp_top_up_money < {total_time * 3}:
+                elif temp_top_up_money < {p1.total_times(entry_time, exit_time) * 3}:
                     print("Sorry, your top up money is not enough, please try again.")
                 else:
                     print("Invalid values please try again.")
