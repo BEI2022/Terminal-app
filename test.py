@@ -1,7 +1,8 @@
 # from datetime import datetime, timedelta
 
 
-import time
+import time, math
+from datetime import datetime
 
 
 
@@ -99,34 +100,24 @@ import time
 # print(c.total_seconds())
 
 
-
 def start_time():
-    # time_in = datetime.now()
-    time_in = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-    # print("%0.2d:%0.2d:%0.2d" % (time_in.hour, time_in.minute, time_in.second))
+    time_in = datetime.now()
     return time_in
 print(start_time())
 
 def finish_time():
-    # time.sleep(3)
-    # time_out = datetime.now()
-    time_out = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-    # print("%0.2d:%0.2d:%0.2d" % (time_out.hour, time_out.minute, time_out.second))
+    time.sleep(3)
+    time_out = datetime.now()
     return time_out
-print(type(finish_time()))
+print(finish_time())
 
-entry_time = start_time() 
-exit_time = finish_time() 
+time_in = start_time()
+time_out = finish_time()
 
-# def total_times(entry_time, exit_time):
-#     total_time =  exit_time - entry_time
-#     return total_time
-
-
-def total_times():
-    total_time =  exit_time - entry_time
+def total_times(time_in, time_out):
+    total_time =  time_out - time_in
     return total_time
-print(total_times())
 
+print(math.floor(total_times(time_in, time_out).total_seconds() * 2))
 
 

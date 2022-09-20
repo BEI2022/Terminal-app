@@ -70,8 +70,8 @@ print("Now you're finish shopping and ready to go home -_-")
 while True:
     temp_out = input("Ready to go home? (yes/no): ")
     if temp_out == "yes":
-        print(f"Your total parking time is: {p1.finish_time()}")
-        print(f"Your total parking time is: {p1.total_times()}, you need to pay ${p1.total_times() * 3}.")
+        print(f"Your check out time is: {p1.finish_time()}")
+        # print(f"Your total parking time is: {p1.total_times()}, you need to pay ${p1.total_times * 3}.")
         break
     elif temp_out == "no":
         print("Have fun!")
@@ -105,10 +105,10 @@ elif date != 1 and member == "no" and sec_member == "no":
         if temp_check_out == "y":
             while True:
                 temp_top_up_money = int(input("Please enter the amount of money you want to top up: "))
-                if temp_top_up_money >= {p1.total_times(entry_time, exit_time) * 3}:
+                if temp_top_up_money >= {p1.total_times(p1.time_in, p1.time_out) * 3}:
                     print("Thanks for shopping today, have a nice day!")
                     exit()
-                elif temp_top_up_money < {p1.total_times(entry_time, exit_time) * 3}:
+                elif temp_top_up_money < {p1.total_times(p1.time_in, p1.time_out) * 3}:
                     print("Sorry, your top up money is not enough, please try again.")
                 else:
                     print("Invalid values please try again.")
@@ -121,16 +121,16 @@ elif date != 1 and member == "no" and sec_member == "no":
 elif date != 1 and member == "yes" or sec_member == "yes":
     while True:
         member_check_out_option = p1.member_check_out_menu()
-        if member_check_out_option == 1:
+        if member_check_out_option == "1":
             p1.member_check()
             continue
-        elif member_check_out_option == 2:
+        elif member_check_out_option == "2":
             top_up_money = int(input("Please enter the amount you want to top up: "))
             p1.member_top_up(top_up_money)
             continue
-        elif member_check_out_option == 3:
+        elif member_check_out_option == "3":
             while True:
-                saving = p1.member_pay_bill()
+                saving = p1.member_pay_bill(int(money))
                 if saving >= 0:
                     print(f"The payment was successful and your balance is {saving}")
                     print("Thank you for visiting today and see you next time!")

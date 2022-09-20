@@ -2,7 +2,7 @@
 #     def __init__(self, plate, Identity):
 #         self.plate = plate
 #         self.Identity = Identity
-import  random, time
+import  random, math
 
 from datetime import datetime
 
@@ -38,25 +38,19 @@ def member_services():
 
 def start_time():
     time_in = datetime.now()
-    # time_in = time.time()
-    print("%0.2d:%0.2d:%0.2d" % (time_in.hour, time_in.minute, time_in.second))
     return time_in
 
 def finish_time():
     # time.sleep(3)
     time_out = datetime.now()
-    # time_out = time.time()
-    print("%0.2d:%0.2d:%0.2d" % (time_out.hour, time_out.minute, time_out.second))
     return time_out
+time_in = start_time()
+time_out = finish_time()
 
-print("this is happenings")
-
-
-def total_times(entry_time, exit_time):
-    entry_time = start_time() 
-    exit_time = finish_time() 
-    total_time =  exit_time - entry_time
+def total_times(time_in, time_out):
+    total_time =  time_out - time_in
     return total_time
+
 
 
 # def total_times():
@@ -69,21 +63,29 @@ def total_times(entry_time, exit_time):
 def member_check_out_menu():
     print("----------------------------------------------------------------")
     print("Welcome to the member checkout page, please select the following options.")
-    print("check balance enter [1]")
-    print("top up enter [2]")
-    print("pay bill enter [3]")
+    print("check balance enter   [1]")
+    print("top up enter \t\t[2]")
+    print("pay bill enter\t\t [3]")
     return input("Please enter your select: ")
 
 def member_check():
-    print(f"Hello {rego}, your balance is ${account_money}.")
+    print(f"Your account balance is ${account_money}")
     return account_money
 
 def member_top_up(top_up_money):
+    global account_money
     account_money += top_up_money
-    print(f"Hello {rego},You successfully deposited ${top_up_money}")
+    print(f"You successfully deposited ${top_up_money}")
     member_check()
-
-def member_pay_bill():
-    account_money -= {total_times(entry_time, exit_time) * 2}
     return account_money
+
+def member_pay_bill(money):
+    global account_money
+    money = math.floor(total_times(time_in, time_out).total_seconds() * 2)
+    account_money -= money
+    print(account_money)
+    member_check()
+    print(account_money)
+    return account_money
+
     
