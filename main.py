@@ -1,5 +1,7 @@
 # import vehicles 
-import  p1
+import p1
+# from p1 import member_check
+from member import Member
 
 # chen = vehicles.Vehicle('668-yyl', "member")
 
@@ -26,18 +28,15 @@ if num == 20:
 else:
     # 选择是否是会员
     while True:
-        member = p1.member_select()
+        member = input("Are you a member? (yes/no): ")
         if member == "yes":
             p1.member_services()
-            break
         elif member == "no":
             sec_member = p1.sec_member_select()
             if sec_member == "yes":
                 print("Welcome! New members! ")
                 p1.member_services()
-                break
-            elif sec_member == "no":
-                break
+
             else:
                 print("Invalid values please try again.")
                 continue
@@ -61,7 +60,20 @@ while True:
         print("Invalid values please try again.")
 
 # 记录到访时间
-print(f"Your check in time is {p1.start_time()}")
+member = Member()
+print(f"Your check in time is {member.time_in}")
+
+print("----------------------------------------------------------------")
+print("Welcome to the member checkout page, please select the following options.")
+print("check balance enter   [1]")
+member.member_check()
+print("top up enter \t\t[2]")
+member.member_top_up(10)
+print("pay bill enter\t\t [3]")
+member.member_check()
+
+
+x = input("Please enter your select: ")
 
 # check out part
 print('--------------------------------------------------------------------------------')
@@ -130,7 +142,8 @@ elif date != 1 and member == "yes" or sec_member == "yes":
             continue
         elif member_check_out_option == "3":
             while True:
-                saving = p1.member_pay_bill(int(money))
+                
+                saving = p1.member_pay_bill()
                 if saving >= 0:
                     print(f"The payment was successful and your balance is {saving}")
                     print("Thank you for visiting today and see you next time!")

@@ -2,16 +2,26 @@
 #     def __init__(self, plate, Identity):
 #         self.plate = plate
 #         self.Identity = Identity
-import  random, math
-
-from datetime import datetime
 
 
-store = None
-member = None
-sec_member = None
-date = None
-account_money = random.randint(0,30)
+
+# def member_check_out_menu():
+#     print("----------------------------------------------------------------")
+#     print("Welcome to the member checkout page, please select the following options.")
+#     print("check balance enter   [1]")
+#     print("top up enter \t\t[2]")
+#     print("pay bill enter\t\t [3]")
+#     return input("Please enter your select: ")
+
+
+
+
+
+# store = None
+# member = None
+# sec_member = None
+# date = None
+# account_money = random.randint(0,30)
 
 def member_select():
     member = input("Are you a member? (yes/no): ")
@@ -37,55 +47,21 @@ def member_services():
             print("Invalid values please try again.")
 
 def start_time():
-    time_in = datetime.now()
-    return time_in
+    pass
+    # time_in = 
+    # return time_in
 
 def finish_time():
     # time.sleep(3)
     time_out = datetime.now()
     return time_out
-time_in = start_time()
-time_out = finish_time()
+# time_in = start_time()
+# time_out = finish_time()
 
-def total_times(time_in, time_out):
-    total_time =  time_out - time_in
-    return total_time
+
 
 
 
 # def total_times():
 #     total_time =  exit_time - entry_time
 #     return total_time
-
-    
-
-
-def member_check_out_menu():
-    print("----------------------------------------------------------------")
-    print("Welcome to the member checkout page, please select the following options.")
-    print("check balance enter   [1]")
-    print("top up enter \t\t[2]")
-    print("pay bill enter\t\t [3]")
-    return input("Please enter your select: ")
-
-def member_check():
-    print(f"Your account balance is ${account_money}")
-    return account_money
-
-def member_top_up(top_up_money):
-    global account_money
-    account_money += top_up_money
-    print(f"You successfully deposited ${top_up_money}")
-    member_check()
-    return account_money
-
-def member_pay_bill(money):
-    global account_money
-    money = math.floor(total_times(time_in, time_out).total_seconds() * 2)
-    account_money -= money
-    print(account_money)
-    member_check()
-    print(account_money)
-    return account_money
-
-    

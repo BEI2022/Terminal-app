@@ -100,24 +100,48 @@ from datetime import datetime
 # print(c.total_seconds())
 
 
-def start_time():
-    time_in = datetime.now()
-    return time_in
-print(start_time())
+# def start_time():
+#     time_in = datetime.now()
+#     return time_in
+# print(start_time())
 
-def finish_time():
-    time.sleep(3)
-    time_out = datetime.now()
-    return time_out
-print(finish_time())
+# def finish_time():
+#     time.sleep(3)
+#     time_out = datetime.now()
+#     return time_out
+# print(finish_time())
 
-time_in = start_time()
-time_out = finish_time()
+# time_in = start_time()
+# time_out = finish_time()
 
-def total_times(time_in, time_out):
-    total_time =  time_out - time_in
-    return total_time
+# def total_times(time_in, time_out):
+#     total_time =  time_out - time_in
+#     return total_time
 
-print(math.floor(total_times(time_in, time_out).total_seconds() * 2))
+# print(math.floor(total_times(time_in, time_out).total_seconds() * 2))
 
 
+a=2
+r=1
+
+def origianl():
+    x = 5
+    return x
+print(origianl())
+
+def add(a):
+    a = origianl() + a
+    return a
+    
+# print(a)
+print(add(a))
+
+x = add(a)
+print(origianl())
+
+def reduce(r):
+    r = origianl() - r
+    return r
+print(reduce(r))
+x = reduce(r)
+print(origianl())
