@@ -1,15 +1,12 @@
 
 
 
-# def member_check_out_menu():
-#     print("----------------------------------------------------------------")
-#     print("Welcome to the member checkout page, please select the following options.")
-#     print("check balance enter   [1]")
-#     print("top up enter \t\t[2]")
-#     print("pay bill enter\t\t [3]")
-#     return input("Please enter your select: ")
-
-
+def menu():
+    print("check account balance enter   [1]")
+    print("top up enter \t\t[2]")
+    print("withdraw money enter\t\t [3]")
+    print("transfer money enter\t\t [4]")
+    print("back to menuenter \t\t[5]")
 
 def member_select():
     member_select = input("Are you a member? (yes/no): ")

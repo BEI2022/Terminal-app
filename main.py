@@ -1,5 +1,5 @@
 
-import p1
+import p1, math
 from car import Car
 from car import Temporary 
 
@@ -60,7 +60,7 @@ while True:
     if temp_out == "yes":
         # print(f"Your check out time is: {car.time_out}")
         car.finish_time()
-        # print(f"Your total parking time is: {car.total_time}, you need to pay ${temp.pay_bill(10)}.")
+        print(f"Your total parking time is: {car.total_times()}, you need to pay ${temp.pay_bill(10)}.")
         break
     elif temp_out == "no":
         print("Have fun!")
@@ -114,9 +114,11 @@ elif p1.member_select() == "yes" :
         if x == "1":
             car.check()
         elif x == "2":
-            car.top_up(10)
+            y = int(input("Please enter the amount you want to top up: "))
+            car.top_up(y)
         elif x == "3":
-            car.pay_bill(10)
+            z = math.floor(car.total_times().total_seconds() * 4)
+            car.pay_bill(z)
             car.check()
         else:
-            continue
+            break
