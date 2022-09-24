@@ -1,5 +1,6 @@
 from card import Card
 from person import Person
+import time
 
 class Process:
     def __init__(self):
@@ -66,6 +67,75 @@ class Process:
     def query(self):
         idx = self.login()  
         if True:
-            print(f"卡号：{self.cardlist[idx].cardid},余额：{self.cardlist[idx].money}")
+            print(f"accont number: {self.cardlist[idx].cardid}, balance: ${self.cardlist[idx].money}")
 
-    
+    def withdraw(self):
+        idx = self.login()
+        if True:
+            while True:
+                num = int(input("Please enter the amount to be withdrawn:"))
+                if num > self.cardlist[idx].money:
+                    print("The amount withdrawn cannot be greater than the account balance!")
+                    continue
+                else:
+                    if self.input_pwd(self.cardidlist[idx]):  # check password
+                        self.cardlist[idx].money -= num
+                        print(f"accont number: {self.cardlist[idx].cardid},balance: ${self.cardlist[idx].money}")
+                        file = './transaction.txt'
+                        content = time.strftime('%Y-%m-%d %H:%M:%S') + f'##accont number: {self.cardlist[idx].cardid},cash out: {num}元,balance: ${self.cardlist[idx].money}\n'
+                        with open(file, 'a') as f:
+                            f.write(content)
+                        break
+                    else:
+                        print("You don't have enough money!")
+                        break
+
+    def deposit(self):
+        idx = self.login()
+        if True:
+            while True:
+                num = int(input("Please enter the amount to be deposited: "))
+                if self.input_pwd(self.cardidlist[idx]):
+                    self.cardlist[idx].money += num
+                    print(f"accont number: {self.cardlist[idx].cardid}, balance: ${self.cardlist[idx].money}")
+                    file = './transaction.txt'
+                    content = time.strftime(
+                        '%Y-%m-%d %H:%M:%S') + f'accont number: {self.cardlist[idx].cardid}, deposited ${num}, balance: ${self.cardlist[idx].money}\n'
+                    with open(file, 'a') as f:
+                        f.write(content)
+                    break
+                else:
+                    print("Deposit failed, incorrect password!")
+                    break
+
+    def transfer(self):
+        idx = self.login()
+        if True:
+            flag = 1
+            while flag:
+                cardid = input("Please enter the transfer account number: ")
+                if cardid not in self.cardidlist:
+                    print("Account number does not exist, please enter again!")
+                    continue
+                else:
+                    trfr_idx = self.cardidlist.index(cardid)
+                    while True:
+                        num = int(input("Please enter the transfer amount: "))
+                        if num > self.cardlist[idx].money:
+                            print("The transfer amount cannot be greater than the balance!")
+                            continue
+                        else:
+                            if self.input_pwd(self.cardidlist[idx]):
+                                self.cardlist[idx].money -= num
+                                self.cardlist[trfr_idx].money += num
+                                print(f"account number: {self.cardlist[idx].cardid}, balance: {self.cardlist[idx].money}")                         
+                                flag = 0
+                                file = './transaction.txt'
+                                content = time.strftime(
+                                    '%Y-%m-%d %H:%M:%S') + f'##account number: {self.cardlist[idx].cardid}, transfer: ${num}, balance: {self.cardlist[idx].money}元\n'
+                                with open(file, 'a+') as f:
+                                    f.write(content)
+                                break
+                            else:
+                                print("Password error, transfer failed!")
+                                break
