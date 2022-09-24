@@ -1,19 +1,18 @@
 from card import Card
-from person import Person
 import time
 
 class Process:
     def __init__(self):
-        self.namelist = []
-        self.data_list = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'] 
-        self.personlist = []
-        self.cardidlist = []
-        self.cardlist = []
+        self.username_list = [] # store all username
+        self.data_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"] 
+        self.person_list = [] # store total person
+        self.account_list = []# store account number
+        self.cardlist = []# store card info
 
     def getusername(self):
         while True:
             name = input("Please enter your username: ")
-            if name not in self.namelist:
+            if name not in self.username_list:
                 return name
             else:
                 print("User already exists, please enter your user name again!")
@@ -31,17 +30,17 @@ class Process:
             else:
                 print("Password must be a number, please enter again!")
 
-    def login(self):  
+    def login(self):    
         while True:
-            cardid = input("Please enter your account number: ")
-            if cardid in self.cardidlist:  
-                idx = self.cardidlist.index(cardid)
+            card_num = input("Please enter your account number: ")
+            if card_num in self.account_list:  
+                idx = self.account_list.index(card_num) 
                 return idx
             else:
                 print("This card is not registered, please enter again!")
 
-    def input_pwd(self,cardid):
-        idx = self.cardidlist.index(cardid)
+    def input_pwd(self,card_num):
+        idx = self.account_list.index(card_num)
         pwd = input("Please enter your password, you have 3 chances: ")
         num = 2
         while num:
@@ -53,21 +52,21 @@ class Process:
                         
     def register(self):
         name = self.getusername()
-        cardid = 100 + len(self.personlist)  
-        while str(cardid) in self.cardidlist:  
-            cardid += 1
-        cardid = str(cardid)
+        card_num = 1000 + len(self.person_list)  
+        while str(card_num) in self.account_list:  
+            card_num += 1
+        card_num = str(card_num)
         pwd = self.getpassword()
-        card = Card(cardid, pwd)
+        card = Card(card_num, pwd)
+        self.account_list.append(card_num)
         self.cardlist.append(card)
-        self.namelist.append(name)
-        self.cardidlist.append(cardid)
-        print(f"Registration is successful and the card number is{cardid}")
+        self.username_list.append(name)
+        print(f"Registration is successful and the account number is {card_num}")
 
     def query(self):
         idx = self.login()  
         if True:
-            print(f"accont number: {self.cardlist[idx].cardid}, balance: ${self.cardlist[idx].money}")
+            print(f"accont number: {self.cardlist[idx].card_num}, balance: ${self.cardlist[idx].money}")
 
     def withdraw(self):
         idx = self.login()
@@ -78,12 +77,12 @@ class Process:
                     print("The amount withdrawn cannot be greater than the account balance!")
                     continue
                 else:
-                    if self.input_pwd(self.cardidlist[idx]):  # check password
+                    if self.input_pwd(self.account_list[idx]):   
                         self.cardlist[idx].money -= num
-                        print(f"accont number: {self.cardlist[idx].cardid},balance: ${self.cardlist[idx].money}")
-                        file = './transaction.txt'
-                        content = time.strftime('%Y-%m-%d %H:%M:%S') + f'##accont number: {self.cardlist[idx].cardid},cash out: {num}元,balance: ${self.cardlist[idx].money}\n'
-                        with open(file, 'a') as f:
+                        print(f"accont number: {self.cardlist[idx].card_num},balance: ${self.cardlist[idx].money}")
+                        file = "./transaction.txt"
+                        content = time.strftime("%Y-%m-%d %H:%M:%S") + f"## accont number: {self.cardlist[idx].card_num},cash out: ${num},balance: ${self.cardlist[idx].money}\n"
+                        with open(file, "a") as f:
                             f.write(content)
                         break
                     else:
@@ -95,13 +94,13 @@ class Process:
         if True:
             while True:
                 num = int(input("Please enter the amount to be deposited: "))
-                if self.input_pwd(self.cardidlist[idx]):
+                if self.input_pwd(self.account_list[idx]):
                     self.cardlist[idx].money += num
-                    print(f"accont number: {self.cardlist[idx].cardid}, balance: ${self.cardlist[idx].money}")
-                    file = './transaction.txt'
+                    print(f"## accont number: {self.cardlist[idx].card_num}, balance: ${self.cardlist[idx].money}")
+                    file = "./transaction.txt"
                     content = time.strftime(
-                        '%Y-%m-%d %H:%M:%S') + f'accont number: {self.cardlist[idx].cardid}, deposited ${num}, balance: ${self.cardlist[idx].money}\n'
-                    with open(file, 'a') as f:
+                        "%Y-%m-%d %H:%M:%S") + f"## accont number: {self.cardlist[idx].card_num}, deposited ${num}, balance: ${self.cardlist[idx].money}\n"
+                    with open(file, "a") as f:
                         f.write(content)
                     break
                 else:
@@ -111,29 +110,29 @@ class Process:
     def transfer(self):
         idx = self.login()
         if True:
-            flag = 1
+            flag = 1 # 1 = True, 0 = False
             while flag:
-                cardid = input("Please enter the transfer account number: ")
-                if cardid not in self.cardidlist:
+                card_num = input("Please enter the transfer account number: ")
+                if card_num not in self.account_list:
                     print("Account number does not exist, please enter again!")
                     continue
                 else:
-                    trfr_idx = self.cardidlist.index(cardid)
+                    trfr_idx = self.account_list.index(card_num)
                     while True:
                         num = int(input("Please enter the transfer amount: "))
                         if num > self.cardlist[idx].money:
                             print("The transfer amount cannot be greater than the balance!")
                             continue
                         else:
-                            if self.input_pwd(self.cardidlist[idx]):
+                            if self.input_pwd(self.account_list[idx]):
                                 self.cardlist[idx].money -= num
                                 self.cardlist[trfr_idx].money += num
-                                print(f"account number: {self.cardlist[idx].cardid}, balance: {self.cardlist[idx].money}")                         
+                                print(f"account number: {self.cardlist[idx].card_num}, balance: {self.cardlist[idx].money}")                         
                                 flag = 0
-                                file = './transaction.txt'
+                                file = "./transaction.txt"
                                 content = time.strftime(
-                                    '%Y-%m-%d %H:%M:%S') + f'##account number: {self.cardlist[idx].cardid}, transfer: ${num}, balance: {self.cardlist[idx].money}元\n'
-                                with open(file, 'a+') as f:
+                                    "%Y-%m-%d %H:%M:%S") + f"## account number: {self.cardlist[idx].card_num}, transfer: ${num}, balance: ${self.cardlist[idx].money}\n"
+                                with open(file, "a+") as f:
                                     f.write(content)
                                 break
                             else:

@@ -1,3 +1,4 @@
+from concurrent.futures import process
 import time
 
 
@@ -17,10 +18,10 @@ class Menu:
         # print("[2] Query")
         print("[3] withdraw                  [4] Deposit")
         # print("[4] Deposit")
-        print("[5] Transfer                  [6] exit")
+        print("[5] Transfer                  [0] exit")
         # print("[6] exit")
         print("------------------------------------------------------------------------------------------------")
 
 
 if __name__ == '__main__':
-    obj = Menu()
+    process = Menu()

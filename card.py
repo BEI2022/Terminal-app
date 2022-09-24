@@ -1,5 +1,5 @@
 class Card:
-    def __init__(self,cardid,pwd,money=10):
+    def __init__(self,card_num,pwd,money=100):
         self.password = pwd 
         self.money = money  
-        self.cardid = cardid  
+        self.card_num = card_num  
