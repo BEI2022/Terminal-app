@@ -1,0 +1,11 @@
+2022-09-25 16:19:37## accont number: 1000,cash out: $100,balance: $0
+2022-09-25 16:20:45## accont number: 1000,cash out: $0,balance: $0
+2022-09-25 16:20:54## accont number: 1000,cash out: $0,balance: $0
+2022-09-25 16:21:03## accont number: 1000, deposited $2000, balance: $2000
+2022-09-25 16:21:30## account number: 1000, transfer: $2, balance: $1998
+2022-09-25 16:50:54## accont number: 1000,cash out: $20,balance: $80
+2022-09-25 16:51:15## accont number: 1000, deposited $40, balance: $120
+2022-09-25 16:52:27## account number: 1000, transfer: $13, balance: $107
+2022-09-25 17:04:09## accont number: 1000,cash out: $20,balance: $80
+2022-09-25 17:04:20## accont number: 1000, deposited $30, balance: $110
+2022-09-25 17:05:03## account number: 1000, transfer: $55, balance: $55
