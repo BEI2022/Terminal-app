@@ -1,12 +1,12 @@
 from concurrent.futures import process
-import time
+from time import *
 
 
 class Menu:
     def __init__(self):
         self.welcome()
         print("The system is loading, please wait...")
-        time.sleep(1)
+        sleep(1)
         self.operator()
 
     def welcome(self):
@@ -15,11 +15,8 @@ class Menu:
     def operator(self):
         print("------------------------------------------------------------------------------------------------")
         print("[1] Register                  [2] Query")
-        # print("[2] Query")
         print("[3] withdraw                  [4] Deposit")
-        # print("[4] Deposit")
         print("[5] Transfer                  [0] exit")
-        # print("[6] exit")
         print("------------------------------------------------------------------------------------------------")
 
 

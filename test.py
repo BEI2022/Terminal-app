@@ -1,4 +1,15 @@
-import cowsay
+from concurrent.futures import process
+from process import Process as p
 
 
-cowsay.cow("hello world!")
+
+
+try:
+    p()
+except Exception as e:
+    print(e)
+else:
+    print("all good")
+
+
+

@@ -1,5 +1,5 @@
 from card import Card
-import time
+from time import *
 
 class Process:
     def __init__(self):
@@ -81,7 +81,7 @@ class Process:
                         self.cardlist[idx].money -= num
                         print(f"accont number: {self.cardlist[idx].card_num},balance: ${self.cardlist[idx].money}")
                         file = "./transaction.txt"
-                        content = time.strftime("%Y-%m-%d %H:%M:%S") + f"## accont number: {self.cardlist[idx].card_num},cash out: ${num},balance: ${self.cardlist[idx].money}\n"
+                        content = strftime("%Y-%m-%d %H:%M:%S") + f"## accont number: {self.cardlist[idx].card_num},cash out: ${num},balance: ${self.cardlist[idx].money}\n"
                         with open(file, "a") as f:
                             f.write(content)
                         break
@@ -98,7 +98,7 @@ class Process:
                     self.cardlist[idx].money += num
                     print(f"## accont number: {self.cardlist[idx].card_num}, balance: ${self.cardlist[idx].money}")
                     file = "./transaction.txt"
-                    content = time.strftime(
+                    content = strftime(
                         "%Y-%m-%d %H:%M:%S") + f"## accont number: {self.cardlist[idx].card_num}, deposited ${num}, balance: ${self.cardlist[idx].money}\n"
                     with open(file, "a") as f:
                         f.write(content)
@@ -130,7 +130,7 @@ class Process:
                                 print(f"account number: {self.cardlist[idx].card_num}, balance: {self.cardlist[idx].money}")                         
                                 flag = 0
                                 file = "./transaction.txt"
-                                content = time.strftime(
+                                content = strftime(
                                     "%Y-%m-%d %H:%M:%S") + f"## account number: {self.cardlist[idx].card_num}, transfer: ${num}, balance: ${self.cardlist[idx].money}\n"
                                 with open(file, "a+") as f:
                                     f.write(content)
