@@ -19,7 +19,9 @@ The program's style conventions and code styles refer to the https://peps.python
 
 # Develop plan
 
-Trello1.jpg
+<img src=" ./Trello1.jpg">
+<img src=" ./Trello2.jpg">
+
 
 # Help documentation 
 
